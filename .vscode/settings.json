@@ -1,0 +1,4 @@
+{
+    "python.listing.enabled": true,
+    "python.listing.pylintEnabled": true
+}
