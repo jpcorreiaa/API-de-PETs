@@ -21,6 +21,7 @@ def test_list_pets():
 #     print(response)
 
 
+@pytest.mark.skip(reason="interacao com o banco")
 def test_delete_pet():
     name = "belinha"
 
