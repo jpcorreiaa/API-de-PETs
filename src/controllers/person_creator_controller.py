@@ -1,11 +1,11 @@
 import re
+from .interfaces.iperson_creator_controller import PersonCreatorControllerInterface
 from src.models.sqlite.interfaces.ipeople_repository import PeopleRepositoryInterface
-from src.models.sqlite.interfaces.ipets_repository import PetsRepositoryInterface
 
 
-class PersonCreatorController:
+class PersonCreatorController(PersonCreatorControllerInterface):
     def __init__(self, people_repository: PeopleRepositoryInterface) -> None:
-        self._people_repository = people_repository
+        self.__people_repository = people_repository
 
     def create(self, person_info: dict) -> dict:
         first_name = person_info["first_name"]
@@ -30,7 +30,7 @@ class PersonCreatorController:
     def __insert_person_in_db(
         self, first_name: str, last_name: str, age: int, pet_id: int
     ) -> None:
-        self._people_repository.insert_person(first_name, last_name, age, pet_id)
+        self.__people_repository.insert_person(first_name, last_name, age, pet_id)
 
     def __format_response(self, person_info: dict) -> dict:
         return {"data": {"type": "Person", "count": 1, "attributes": person_info}}

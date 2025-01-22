@@ -1,9 +1,10 @@
 from typing import Dict
+from .interfaces.iperson_finder_controller import PersonFinderControllerInterface
 from src.models.sqlite.interfaces.ipeople_repository import PeopleRepositoryInterface
 from src.models.sqlite.entities.people import PeopleTable
 
 
-class PersonFinderController:
+class PersonFinderController(PersonFinderControllerInterface):
     def __init__(self, people_repository: PeopleRepositoryInterface) -> None:
         self._people_repository = people_repository
 
