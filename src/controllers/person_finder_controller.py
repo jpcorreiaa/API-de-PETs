@@ -1,4 +1,6 @@
 from typing import Dict
+
+from src.errors.error_types.http_not_found import HttpNotFoundError
 from .interfaces.iperson_finder_controller import PersonFinderControllerInterface
 from src.models.sqlite.interfaces.ipeople_repository import PeopleRepositoryInterface
 from src.models.sqlite.entities.people import PeopleTable
@@ -16,7 +18,7 @@ class PersonFinderController(PersonFinderControllerInterface):
     def __find_person_in_db(self, person_id: int) -> PeopleTable:
         person = self._people_repository.get_person(person_id)
         if not person:
-            raise Exception("Pessoa nao encontrada!")
+            raise HttpNotFoundError("Pessoa nao encontrada!")
 
         return person
 
